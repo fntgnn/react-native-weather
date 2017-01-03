@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -12,42 +6,84 @@ import {
   View
 } from 'react-native';
 
+import MapView  from 'react-native-maps';
+import Api from './src/Api.js';
+
 export default class weather extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      pin: {
+        latitude: 0,
+        longitude: 0
+      },
+      city: '',
+      temperature: '',
+      description: ''
+    }
+  }
+
   render() {
+
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+        <MapView
+         style={styles.map} 
+         onRegionChangeComplete={this.onRegionChangeComplete.bind(this)}
+         >
+          <MapView.Marker
+            coordinate={this.state.pin}
+          />
+        </MapView>
+        <View style={styles.textWrapper}>
+          <Text style={styles.text}>{this.state.city}</Text>
+          <Text style={styles.text}>{this.state.temperature}</Text>
+          <Text style={styles.text}>{this.state.description}</Text>
+        </View>
       </View>
-    );
+     );
+  }
+
+  onRegionChangeComplete(region){
+    this.setState({
+      pin: {
+        longitude: region.longitude,
+        latitude: region.latitude
+      }
+    });
+
+    Api(region.latitude, region.longitude)
+      .then((data)=>{
+        console.log(data);
+;       this.setState(data);
+      });
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: 'stretch',
+    backgroundColor: '#F5FCFF'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+
+  map: {
+    flex: 2,
+    //marginTop: 30   in Android we don't need it
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+
+  textWrapper: {
+    flex: 1,
+    alignItems: 'center'
   },
+ 
+  text: {
+    fontSize: 30
+  }
+
 });
 
 AppRegistry.registerComponent('weather', () => weather);
