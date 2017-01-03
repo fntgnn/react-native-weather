@@ -9,9 +9,16 @@ import {
 import MapView  from 'react-native-maps';
 
 export default class weather extends Component {
+  onRegionChangeComplete(region){
+    console.log(region);
+  }
+
   render() {
     return (
-         <MapView style={styles.map}>
+         <MapView 
+          style={styles.map}
+          onRegionChangeComplete={this.onRegionChangeComplete}
+          >
         </MapView>
     );
   }

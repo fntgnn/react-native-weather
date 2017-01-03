@@ -10,3 +10,7 @@ I would like to make the same weather app of this <a href="https://www.youtube.c
 <li>Follow the instructions in <a href="https://github.com/airbnb/react-native-maps/blob/master/docs/installation.md" >here</a></li>
 <li>Also you need to activate Google Maps Android API (if you use Android) and Google Maps JavaScript API in <a href="https://console.developers.google.com/">Console.Developers.Google</a> - Library
 </ul>
+
+<h2>36 MapViews Continued</h2>
+Remember to enable Remote JS Debuggin and activate the console
+
