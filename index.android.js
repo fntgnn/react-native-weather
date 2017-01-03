@@ -9,18 +9,20 @@ import {
 import MapView  from 'react-native-maps';
 
 export default class weather extends Component {
-  onRegionChangeComplete(region){
-    console.log(region);
-  }
-
   render() {
+    let pins ={
+      latitude: 37,
+      longitude: -95
+    };
+
     return (
-         <MapView 
-          style={styles.map}
-          onRegionChangeComplete={this.onRegionChangeComplete}
-          >
-        </MapView>
-    );
+      <MapView
+       style={styles.map} >
+        <MapView.Marker
+          coordinate={pins}
+        />
+      </MapView>
+     );
   }
 }
 

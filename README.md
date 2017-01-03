@@ -14,3 +14,5 @@ I would like to make the same weather app of this <a href="https://www.youtube.c
 <h2>36 MapViews Continued</h2>
 Remember to enable Remote JS Debuggin and activate the console
 
+<h2>37 More on MapViews</h2>
+You don't use annotations, insted the component <MapView.Marker> inside the <MapView>
