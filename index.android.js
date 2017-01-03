@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import MapView  from 'react-native-maps';
+import Api from './src/Api.js';
 
 export default class weather extends Component {
 
@@ -16,7 +17,10 @@ export default class weather extends Component {
       pin: {
         latitude: 0,
         longitude: 0
-      }
+      },
+      city: '',
+      temperature: '',
+      description: ''
     }
   }
 
@@ -40,7 +44,13 @@ export default class weather extends Component {
         longitude: region.longitude,
         latitude: region.latitude
       }
-    })
+    });
+
+    Api(region.latitude, region.longitude)
+      .then((data)=>{
+        console.log(data);
+;       this.setState(data);
+      });
   }
 }
 

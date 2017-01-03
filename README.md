@@ -16,3 +16,11 @@ Remember to enable Remote JS Debuggin and activate the console
 
 <h2>37 More on MapViews</h2>
 You don't use annotations, insted the component <MapView.Marker> inside the <MapView>
+
+<h2>from 39 to 42</h2>
+in src/Api.js, there is an import of file named APPID.js. This is just a function that return your APPID of OpenWeatherMap as a String:
+<code>
+export default function(){
+	return '123456...';	//your appid
+}
+</code>
