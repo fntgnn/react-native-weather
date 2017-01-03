@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import APPID from './APPID';
 
 var kelvinToF=function(kelvin){
@@ -15,7 +16,7 @@ export default function(latitude, longitude){
         return {
         	city: responseJson.name,
         	temperature: kelvinToF(responseJson.main.temp),
-        	description: responseJson.weather[0].description
+        	description: _.capitalize(responseJson.weather[0].description)
         };
       })
       .catch((error) => {

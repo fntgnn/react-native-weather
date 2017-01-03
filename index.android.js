@@ -27,14 +27,21 @@ export default class weather extends Component {
   render() {
 
     return (
-      <MapView
-       style={styles.map} 
-       onRegionChangeComplete={this.onRegionChangeComplete.bind(this)}
-       >
-        <MapView.Marker
-          coordinate={this.state.pin}
-        />
-      </MapView>
+      <View style={styles.container}>
+        <MapView
+         style={styles.map} 
+         onRegionChangeComplete={this.onRegionChangeComplete.bind(this)}
+         >
+          <MapView.Marker
+            coordinate={this.state.pin}
+          />
+        </MapView>
+        <View style={styles.textWrapper}>
+          <Text style={styles.text}>{this.state.city}</Text>
+          <Text style={styles.text}>{this.state.temperature}</Text>
+          <Text style={styles.text}>{this.state.description}</Text>
+        </View>
+      </View>
      );
   }
 
@@ -56,9 +63,27 @@ export default class weather extends Component {
 
 
 const styles = StyleSheet.create({
-  map: {
+  container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: '#F5FCFF'
   },
+
+  map: {
+    flex: 2,
+    //marginTop: 30   in Android we don't need it
+  },
+
+  textWrapper: {
+    flex: 1,
+    alignItems: 'center'
+  },
+ 
+  text: {
+    fontSize: 30
+  }
+
 });
 
 AppRegistry.registerComponent('weather', () => weather);
